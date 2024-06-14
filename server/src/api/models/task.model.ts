@@ -1,6 +1,7 @@
 import { model, Schema } from 'mongoose'
+import { TaskType } from '../type/task.type'
 
-const taskSchema = new Schema(
+const taskSchema = new Schema<TaskType>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
