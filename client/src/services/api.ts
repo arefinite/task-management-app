@@ -12,8 +12,7 @@ export const addTask = async (data: TaskType) => {
 }
 
 export const getAllTasks = async () => {
-  return (await apiClient.get<TaskType[]>(`${baseURL}/task/all-tasks`))
-    .data
+  return (await apiClient.get<TaskType[]>(`${baseURL}/task/all-tasks`)).data
 }
 
 export const deleteTask = async (id: string) => {
@@ -26,4 +25,12 @@ export const getSingleTask = async (id: string) => {
 
 export const updateTask = async (id: string, data: TaskType) => {
   return await apiClient.patch(`${baseURL}/task/${id}`, data)
+}
+
+export const updateTaskStatus = async (
+  id: string,
+  status: string
+): Promise<TaskType> => {
+  const response = await axios.patch(`${baseURL}/task/${id}`, { status })
+  return response.data
 }

@@ -2,6 +2,7 @@ import { useEffect, useState, FC } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { useGetAllTasks } from '@/services/queries'
+import { updateTaskStatus } from '@/services/api'
 import { LoaderCircle } from 'lucide-react'
 import { useDrag, useDrop, DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -34,7 +35,7 @@ const DashboardHome: FC = () => {
     return <LoaderCircle className='animate-spin' />
   }
 
-  const moveTask = (task: TaskType, toStatus: string) => {
+  const moveTask = async (task: TaskType, toStatus: string) => {
     const sourceList = getList(task.status)
     const destinationList = getList(toStatus)
 
@@ -43,6 +44,16 @@ const DashboardHome: FC = () => {
 
     setList(task.status, updatedSourceList)
     setList(toStatus, updatedDestinationList)
+
+    
+    try {
+      await updateTaskStatus(task._id!, toStatus)
+    } catch (error) {
+      console.error('Failed to update task status:', error)
+      
+      setList(toStatus, destinationList)
+      setList(task.status, sourceList)
+    }
   }
 
   const getList = (status: string) => {
