@@ -2,7 +2,6 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { useGetAllTasks } from '@/services/queries'
 import { LoaderCircle } from 'lucide-react'
-import { todo } from 'node:test'
 
 const DashboardHome = () => {
   const { data: tasks, isPending } = useGetAllTasks()
