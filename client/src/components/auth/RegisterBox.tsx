@@ -21,7 +21,7 @@ const RegisterBox = () => {
       userInfo.password
     )
     if (success) {
-      navigate('/')
+      navigate('/dashboard/home')
     }
     if(error) {
       console.log(error)

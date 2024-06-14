@@ -24,11 +24,11 @@ const Header = () => {
           <div className='flex items-center gap-2'>
             <Key color='red' />
             <span className='text-lg md:text-2xl tracking-tighter font-bold'>
-              <Link to='/dashboard'>Admin Dashboard</Link>
+              <Link to='/dashboard/home'>Admin Dashboard</Link>
             </span>
           </div>
           <div className='text-right  hidden md:block'>
-            <div>Welcome {user?.displayName}</div>
+            <div>Welcome {user?.displayName ?? user?.email}</div>
             <div>
               {date} | {time}
             </div>

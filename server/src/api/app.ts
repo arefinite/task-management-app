@@ -4,6 +4,7 @@ import cors from 'cors'
 import { globalErrorHandler } from './middleware/globalErrorHandler'
 import { config } from '../config/config'
 import path from 'path'
+import { taskRouter } from './route/task.route'
 export const app = express()
 
 // middlewares
@@ -19,6 +20,8 @@ app.use(
 )
 app.use(express.static(path.join(__dirname, '../../../client/dist')))
 //routes
+
+app.use('/api/v1/task', taskRouter)
 
 //global error handler
 app.use(globalErrorHandler)

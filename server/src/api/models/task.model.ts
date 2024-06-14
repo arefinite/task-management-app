@@ -7,6 +7,7 @@ const taskSchema = new Schema<TaskType>(
     description: { type: String, required: true },
     deadline: { type: String, required: true },
     priority: { type: String, required: true },
+    status: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -14,3 +15,4 @@ const taskSchema = new Schema<TaskType>(
 )
 
 export const Task = model('Task', taskSchema)
+

@@ -24,12 +24,13 @@ export const getSingleTask = asyncHandler(
 // add task
 export const addTask = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { title, description, deadline, priority } = req.body
+    const { title, description, deadline, priority, status } = req.body
     const newTask = await Task.create({
       title,
       description,
       deadline,
       priority,
+      status,
     })
     if (!newTask) return next(createHttpError(400, 'Task add failed'))
     res.status(200).json('Task added successfully')
@@ -40,12 +41,13 @@ export const addTask = asyncHandler(
 export const updateTask = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
-    const { title, description, deadline, priority } = req.body
+    const { title, description, deadline, priority, status } = req.body
     const updateTask = await Task.findByIdAndUpdate(id, {
       title,
       description,
       deadline,
       priority,
+      status,
     })
     if (!updateTask) return next(createHttpError(400, 'Task update failed'))
     res.status(200).json('Task updated successfully')

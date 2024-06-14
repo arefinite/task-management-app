@@ -14,6 +14,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoute'
 import DashboardLayout from '@/layouts/DashboardLayout'
 import UpdateTask from '@/pages/dashboard/UpdateTask'
+import { getSingleTask } from '@/services/api'
 
 export const appRouter = createBrowserRouter([
   {
@@ -60,13 +61,13 @@ export const appRouter = createBrowserRouter([
         element: <ManageTasks />,
       },
       {
-        path: 'dashboard/manage-tasks/add-product',
+        path: 'dashboard/manage-tasks/add-task',
         element: <AddTask />,
       },
       {
-        path: 'dashboard/manage-products/update-task/:id',
+        path: 'dashboard/manage-tasks/update-task/:id',
         element: <UpdateTask />,
-        // loader: ({ params }) => getSingleProduct(params.id!),
+        loader: ({ params }) => getSingleTask(params.id!),
       },
     ],
   },

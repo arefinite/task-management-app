@@ -16,18 +16,20 @@ const LoginBox = () => {
 
   const [signInWithEmailAndPassword, , , error] =
     useSignInWithEmailAndPassword(auth)
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
+  const handleGoogleSignIn = async () => {
+    await signInWithGoogle()
+    navigate('/dashboard/home')
   }
-  const handleGitHubSignIn = () => {
-    signInWithGithub()
+  const handleGitHubSignIn = async () => {
+    await signInWithGithub()
+    navigate('/dashboard/home')
   }
   const { register, handleSubmit } = useForm<User>()
 
   const handleEmailSignIn: SubmitHandler<User> = async user => {
     const success = await signInWithEmailAndPassword(user.email, user.password)
     if (success) {
-      navigate('/')
+      navigate('/dashboard/home')
     }
   }
 
